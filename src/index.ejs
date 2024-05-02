@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+  <title>Single spa Parent</title>
+
+  <!-- <script>
+    const cookie=document.cookie;
+    if(cookie.match("tenantId=WMTUS") || cookie.match("tenantId=WMTUSStores") || cookie.match("tenantId=WMTUSOnline")){
+    (function() {
+        var src = ((window.location.host.indexOf("localhost")!==-1) || (window.location.host.indexOf("dev")!==-1) || (window.location.host.indexOf("qa")!==-1)) ? "https://storage.productanalytics.prod.walmart.com/widget/nonprod/script.js" : "https://storage.productanalytics.prod.walmart.com/widget/prod/script.js";  
+        document.write('<script src="' + src + '"><\/script>');
+    })();
+  }
+    </script> -->
+  
+  <meta name="importmap-type" content="systemjs-importmap" />
+  <script>
+    var importMapScript;
+    var GTMAcc = "";
+    var currentEnvironment;
+    if (window.location.host.indexOf("localhost") !== -1) {
+      currentEnvironment = "local";
+      importMapScript = '<script type="systemjs-importmap" src="/src/importmap-local.json"></' + 'script>';
+    } else if (window.location.host.indexOf("dev") !== -1) {
+      currentEnvironment = "dev";
+      GTMAcc = "GTM-5CGGTST";
+      importMapScript = '<script type="systemjs-importmap" src="https://palm-services.services.cnnt.dev.prod.us.walmart.net/ccm-config/property?configName=mfe_import_map&propertyName=imports"></' + 'script>';
+    } else if (window.location.host.indexOf("stg") !== -1) {
+      currentEnvironment = "stg";
+      GTMAcc = "GTM-5F227LK"
+      importMapScript = '<script type="systemjs-importmap" src="https://palm-services.services.cnnt.stg.prod.us.walmart.net/ccm-config/property?configName=mfe_import_map&propertyName=imports"></' + 'script>';
+    } else {
+      currentEnvironment = "prod";
+      GTMAcc = "GTM-NJ32WSD"
+      importMapScript = '<script type="systemjs-importmap" src="https://palm-services.services.cnnt.prod.us.walmart.net/ccm-config/property?configName=mfe_import_map&propertyName=imports"></' + 'script>';
+    }
+    document.write(importMapScript);
+
+  </script>
+  <!-- <script>
+    const ff = JSON.parse(localStorage.getItem("featureFlag"));
+    const simpoFlag = ff ? ff["simpo_enabled_feedback_disabled"] : null;    !(function () {
+      var o = (window.simpo = window.simpo || []);
+      if (!o.initialize && !o.invoked) {
+        (o.invoked = !0),
+          (o.methods = [
+            'configure',
+            'identify',
+            'reset',
+            'ready',
+            'debug',
+            'off',
+            'on'
+          ]),
+          (o.generator = function (t) {
+            return function () {
+              var e = Array.prototype.slice.call(arguments);
+              return e.unshift(t), o.push(e), o;
+            };
+          });
+        for (var e = 0; e < o.methods.length; e++) {
+          var t = o.methods[e];
+          o[t] = o.generator(t);
+        }
+        (o.load = function (e) {
+          var t = document.createElement('script');
+          (t.type = 'text/javascript'),
+            (t.async = !0),
+            (t.src = 'https://cdn.simpo.io/simpo.js'),
+            (o.ucid = e);
+          var n = document.getElementsByTagName('script')[0];
+          n.parentNode.insertBefore(t, n);
+        }),
+          (o.SNIPPET_VERSION = '2.0.0');
+      }
+    })();
+
+    var user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null
+
+    simpo.configure({
+      "uuid": user ? user.loginId.split('\\')[1] : null,
+      "user": {
+        "name": user ? user.username : null,
+        "email": user ? user.email : null
+      },
+    }
+    );
+    if(simpoFlag === 'true') {
+      if (currentEnvironment === 'prod') {
+        simpo.load('a4e280ddeb9108ca56b9b952911660b4d255a5bfb5');
+      } else {
+        simpo.load('b8c3736d4690b3655b1e3251e2b463393c78cefa24');
+      }
+    }
+  </script> -->
+  <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@1.14.6/dist/import-map-overrides.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.3.1/dist/system.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.3.1/dist/extras/amd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.3.1/dist/extras/named-exports.min.js"></script>
+
+</head>
+
+<body>
+<!-- <script>
+  const fetchAppId = (currentEnvironment) => {
+      if (window.location.host.indexOf("local") !== -1) {
+        currentEnvironment = "local";
+      } else if (window.location.host.indexOf("dev") !== -1) {
+        currentEnvironment = "dev";
+      } else if (window.location.host.indexOf("qa") !== -1) {
+        currentEnvironment = "qa";
+      } else if (window.location.host.indexOf("stg") !== -1) {
+        currentEnvironment = "stg";
+      } else {
+        currentEnvironment = "prod";
+      }
+      if (currentEnvironment === "local"
+          || currentEnvironment === "dev"
+          || currentEnvironment === "qa") {
+        return "80e0913f-4d80-492d-984d-5f7e30608c09";
+      } else return "088fb735-f676-4bee-b8f6-a12fff19b3d7";
+    }
+
+</script> -->
+  <script>
+    System.import('@mfe-demo/root-config');
+  </script>
+  <!-- <script>
+  if(cookie.match("tenantId=WMTUS") || cookie.match("tenantId=WMTUSStores") || cookie.match("tenantId=WMTUSOnline")){
+   window.WMVoice = {};
+    //this is your prod appId, it will change between dev and prod
+    window.WMVoice.appId =fetchAppId();
+    console.log(window.WMVoice.appId);
+    //launcher type - slide or action
+    window.WMVoice.type = 'slide';
+    //dispatch event that tells script to display
+    document.dispatchEvent(new Event('injectFeedback'));
+  }
+  </script> -->
+  <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
+  <div id="single-spa-application:@mfe-demo/navbar"></div>
+</body>
+</html>
