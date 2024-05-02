@@ -4,7 +4,8 @@
       "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.production.min.js",
       "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.5.3/lib/system/single-spa.min.js",
       "@mfe-demo/root-config": "//localhost:3000/mfe-demo-root-config.js",
-      "@mfe-demo/navbar": "//localhost:3003/mfe-demo-navbar.js"
+      "@mfe-demo/navbar": "//localhost:3003/mfe-demo-navbar.js",
+      "@mfe-demo/main-child-ui": "//localhost:3001/mfe-demo-main-child.js"
     }
   }
   

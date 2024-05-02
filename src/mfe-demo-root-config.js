@@ -14,12 +14,17 @@ registerApplication({
   activeWhen: "/",
 });
 
+registerApplication({
+  name: "@mfe-demo/main-child-ui",
+  app: () => System.import("@mfe-demo/main-child-ui"),
+  activeWhen: [
+          (location) =>
+            location.pathname == "/" || location.pathname.startsWith("/pal")
+        ]
+});
+
 start();
-// registerApplication({
-//   name: "@mfe-demo/main-child-ui",
-//   app: () => System.import("@mfe-demo/main-child-ui"),
-//   activeWhen: "/",
-// });
+
 
 // registerApplication({
 //   name: "@mfe-demo/first-child-ui",
